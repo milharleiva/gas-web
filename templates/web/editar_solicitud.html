@@ -1,0 +1,48 @@
+{% extends 'logins/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Editar Solicitud {{ solicitud.id }}</h2>
+    <form action="{% url 'editar_solicitud' solicitud.id %}" method="post">
+        {% csrf_token %}
+        
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Información Personal</h5>
+                <div class="mb-3">
+                    <label for="id_rut" class="form-label">RUT:</label>
+                    <input type="text" class="form-control" name="rut" id="id_rut" value="{{ solicitud.rut }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="id_nombre" class="form-label">Nombre:</label>
+                    <input type="text" class="form-control" name="nombre" id="id_nombre" value="{{ solicitud.nombre }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="id_apellidos" class="form-label">Apellidos:</label>
+                    <input type="text" class="form-control" name="apellidos" id="id_apellidos" value="{{ solicitud.apellidos }}" required>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Información de Contacto</h5>
+                <div class="mb-3">
+                    <label for="id_direccion" class="form-label">Dirección:</label>
+                    <input type="text" class="form-control" name="direccion" id="id_direccion" value="{{ solicitud.direccion }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="id_telefono" class="form-label">Teléfono:</label>
+                    <input type="text" class="form-control" name="telefono" id="id_telefono" value="{{ solicitud.telefono }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="id_comuna" class="form-label">Comuna:</label>
+                    <input type="text" class="form-control" name="comuna" id="id_comuna" value="{{ solicitud.comuna }}" required>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Actualizar Solicitud</button>
+    </form>
+</div>
+{% endblock content %}

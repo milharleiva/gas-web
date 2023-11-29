@@ -1,0 +1,33 @@
+{% extends 'logins/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Crear Nuevo Usuario</h2>
+    <form method="post" class="border p-4 rounded bg-light">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="first-name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="first-name" name="first-name" placeholder="Ingrese su nombre" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="mb-3">
+            <label for="confirm_password" class="form-label">Confirmar Contraseña</label>
+            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico (Nombre de Usuario)</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="superuser" name="superuser">
+            <label class="form-check-label" for="superuser">Marcar como Superusuario</label>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Crear Usuario</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}

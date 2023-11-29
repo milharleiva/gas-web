@@ -1,0 +1,23 @@
+{% extends 'logins/base.html' %}
+
+{% block content %}
+<div class="container mt-3">
+    <h2>Editar Usuario</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label  class="form-label">Nombre</label>
+            <input class="form-control" type="text" name="first-name" placeholder="Ingrese su nombre" value="{{ user.first_name }}">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico (Nombre de Usuario)</label>
+            <input type="email" class="form-control" id="email" name="email" required value="{{ user.email }}">
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="superuser" name="superuser" {% if user.is_superuser %}checked{% endif %}>
+            <label class="form-check-label" for="superuser">Marcar como Superusuario</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Actualizar Usuario</button>
+    </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends 'logins/base.html' %}
+
+{% block content %}
+<div class="container mt-3">
+    <h2>Cambiar Estado de la Solicitud</h2>
+    <form method="post" action="{% url 'cambiar_estado' solicitud.id %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="estado" class="form-label">Nuevo Estado</label>
+            <select name="estado" id="estado" class="form-select">
+                {% for estado, estado_display in solicitud.ESTADOS %}
+                    <option value="{{ estado }}" {% if solicitud.estado == estado %} selected {% endif %}>
+                        {{ estado_display }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Cambiar Estado</button>
+        <a href="{% url 'listar_solicitudes' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock content %}

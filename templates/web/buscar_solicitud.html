@@ -1,0 +1,30 @@
+{% extends 'logins/base.html' %}
+
+{% block content %}
+<form method="get" action="{% url 'buscar_solicitud' %}">
+    <div class="mb-3">
+        <label for="buscarRUT" class="form-label">Buscar por RUT:</label>
+        <input type="text" class="form-control" id="buscarRUT" name="rut" placeholder="Ingrese RUT">
+    </div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+
+
+{% if resultados %}
+    <h2>Resultados de la búsqueda:</h2>
+    <div class="resultados">
+        {% for solicitud in resultados %}
+            <div class="solicitud">
+                <p>RUT: {{ solicitud.rut }}</p>
+                <p>Nombre: {{ solicitud.nombre }}</p>
+                <p>Apellidos: {{ solicitud.apellidos }}</p>
+               
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    {% if query %}
+        <p>No se encontraron solicitudes con el RUT proporcionado.</p>
+    {% endif %}
+{% endif %}
+{% endblock content %}

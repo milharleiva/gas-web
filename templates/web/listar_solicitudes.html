@@ -1,0 +1,41 @@
+{% extends 'logins/base.html' %}
+
+{% block content %}
+<div class="container mt-3">
+    <h2>Listado de Solicitudes</h2>
+    <table class="table table-striped mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>RUT</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for solicitud in solicitudes %}
+            <tr>
+                <td>{{ solicitud.rut }}</td>
+                <td>{{ solicitud.nombre }}</td>
+                <td>{{ solicitud.apellidos }}</td>
+                <td>
+                    <!-- Botón de detalle -->
+                    <a href="{% url 'detalle_solicitud' solicitud.id %}" class="btn btn-info btn-sm">Detalle</a>
+                    
+                    {% if user.is_superuser %}
+                        <!-- Botón de editar -->
+                        <a href="{% url 'editar_solicitud' solicitud.id %}" class="btn btn-secondary btn-sm">Editar</a>
+                        
+                        <!-- Botón de cambiar estado -->
+                        <a href="{% url 'cambiar_estado' solicitud.id %}" class="btn btn-warning btn-sm">Cambiar Estado</a>
+                        
+                        <!-- Botón de eliminar -->
+                        <a href="{% url 'confirmar_eliminacion' solicitud.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

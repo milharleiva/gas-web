@@ -1,0 +1,22 @@
+{% extends 'logins/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-3">Descuentos en Gas</h2>
+    
+    <!-- Contenido relevante sobre descuentos de gas -->
+    <div class="mb-4">
+        <p>Bienvenido a nuestro servicio de descuentos en gas. Aquí podrás gestionar tus solicitudes, buscar información relevante y disfrutar de los mejores precios y servicios en tu consumo de gas.</p>
+        <p>Explora nuestras opciones para encontrar la mejor oferta para ti y tu familia, o administra tus solicitudes existentes de manera fácil y rápida.</p>
+    </div>
+
+    <!-- Botones de acción -->
+    <div class="mb-4">
+        {% if user.is_authenticated %}
+            <a href="/dashboard" class="btn btn-info me-2">Ver mi cuenta</a>
+            <a href="/buscar_solicitud/" class="btn btn-primary me-2">Buscar Solicitud</a>
+        {% endif %}
+        <a href="/ingresar_solicitud/" class="btn btn-success">Ingresar Solicitud</a>
+    </div>
+</div>
+{% endblock content %}
